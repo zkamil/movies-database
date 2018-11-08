@@ -2,23 +2,18 @@ import React, { Component } from 'react';
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import uuid from 'uuid';
+import { connect } from 'react-redux';
+import { getMovies } from '../actions/movieActions'
+import PropTypes from 'prop-types';
 
 
 class MovieList extends Component {
 
-    state = {
-        items:[
-            {id: uuid(), name: 'BatMan' },
-            {id: uuid(), name: 'The Dark Knight' },
-            {id: uuid(), name: 'Avengers' },
-            {id: uuid(), name: 'Justice League' },
-            {id: uuid(), name: 'Doctor Strange' },
-            {id: uuid(), name: 'Super Man' },
-        ]
+    componentDidMount() {
+        this.props.getMovies();
     }
-
    render() {
-       const { items } = this.state;
+       const { movies } = this.props.movie;
        return(
           <Container>
               <Button
@@ -28,14 +23,14 @@ class MovieList extends Component {
                 const name = prompt('Enter Movie')
                 if(name) {
                     this.setState(state => ({
-                        items: [...state.items, { id: uuid(), name}]
+                        movies: [...state.movies, { id: uuid(), name}]
                     }));
                 }
               }}
               >Add Movie</Button>
               <ListGroup>
                   <TransitionGroup className="movie-list">
-                    {items.map(({ id, name }) => (
+                    {movies.map(({ id, name }) => (
                        <CSSTransition key={id} timeout={500} classNames="fade">
                             <ListGroupItem>
                                 <Button
@@ -44,7 +39,7 @@ class MovieList extends Component {
                                 size="sm"
                                 onClick={() =>{
                                     this.setState(state => ({
-                                        items: state.items.filter(item => item.id !== id)
+                                        movies: state.movies.filter(movie => movie.id !== id)
                                     }));
                                 }}
                                 >&times;</Button>
@@ -59,4 +54,13 @@ class MovieList extends Component {
    }
 }
 
-export default MovieList;
+MovieList.propTypes ={
+    getMovies: PropTypes.func.isRequired,
+    movie: PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state) => ({
+    movie: state.movie
+});
+
+export default connect(mapStateToProps, { getMovies })(MovieList);
