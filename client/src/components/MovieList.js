@@ -3,7 +3,7 @@ import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import uuid from 'uuid';
 import { connect } from 'react-redux';
-import { getMovies } from '../actions/movieActions'
+import { getMovies, deleteMovie } from '../actions/movieActions'
 import PropTypes from 'prop-types';
 
 
@@ -12,22 +12,14 @@ class MovieList extends Component {
     componentDidMount() {
         this.props.getMovies();
     }
+
+    onDeleteClick = (id) => {
+        this.props.deleteMovie(id);
+    }
    render() {
        const { movies } = this.props.movie;
        return(
           <Container>
-              <Button
-              color="dark"
-              size={{marginBottom: '2rem'}}
-              onClick={() =>{
-                const name = prompt('Enter Movie')
-                if(name) {
-                    this.setState(state => ({
-                        movies: [...state.movies, { id: uuid(), name}]
-                    }));
-                }
-              }}
-              >Add Movie</Button>
               <ListGroup>
                   <TransitionGroup className="movie-list">
                     {movies.map(({ id, name }) => (
@@ -37,12 +29,10 @@ class MovieList extends Component {
                                 className="remove-btn"
                                 color="danger"
                                 size="sm"
-                                onClick={() =>{
-                                    this.setState(state => ({
-                                        movies: state.movies.filter(movie => movie.id !== id)
-                                    }));
-                                }}
-                                >&times;</Button>
+                                onClick={this.onDeleteClick.bind(this, id)}
+                                >
+                                &times;
+                                </Button>
                                 {name}
                             </ListGroupItem>
                        </CSSTransition> 
@@ -63,4 +53,4 @@ const mapStateToProps = (state) => ({
     movie: state.movie
 });
 
-export default connect(mapStateToProps, { getMovies })(MovieList);
+export default connect(mapStateToProps, { getMovies, deleteMovie })(MovieList);
