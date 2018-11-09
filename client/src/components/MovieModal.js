@@ -37,7 +37,7 @@ class MovieModal extends Component {
       name: this.state.name
     };
 
-    // Add item via addMovie action
+    // Add movie via addMovie action
     this.props.addMovie(newMovie);
 
     // Close modal
@@ -52,7 +52,7 @@ class MovieModal extends Component {
           style={{ marginBottom: '2rem' }}
           onClick={this.toggle}
         >
-          Add Item
+          Add Movie
         </Button>
 
         <Modal isOpen={this.state.modal} toggle={this.toggle}>

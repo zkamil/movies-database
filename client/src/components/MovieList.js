@@ -13,7 +13,7 @@ class MovieList extends Component {
         this.props.getMovies();
     }
 
-    onDeleteClick = (id) => {
+    onDeleteClick = id => {
         this.props.deleteMovie(id);
     }
    render() {
@@ -22,14 +22,14 @@ class MovieList extends Component {
           <Container>
               <ListGroup>
                   <TransitionGroup className="movie-list">
-                    {movies.map(({ id, name }) => (
-                       <CSSTransition key={id} timeout={500} classNames="fade">
+                    {movies.map(({ _id, name }) => (
+                       <CSSTransition key={_id} timeout={500} classNames="fade">
                             <ListGroupItem>
                                 <Button
                                 className="remove-btn"
                                 color="danger"
                                 size="sm"
-                                onClick={this.onDeleteClick.bind(this, id)}
+                                onClick={this.onDeleteClick.bind(this, _id)}
                                 >
                                 &times;
                                 </Button>
