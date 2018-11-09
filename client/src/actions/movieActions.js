@@ -1,4 +1,4 @@
-import { GET_MOVIES, ADD_MOVIE, DELETE_MOVIE } from './types'
+import { GET_MOVIES, ADD_MOVIE, DELETE_MOVIE, MOVIE_LOADING } from './types'
 
 
 
@@ -7,7 +7,7 @@ export const getMovies = () => {
         type: GET_MOVIES
     };
 
-}
+};
 
 export const deleteMovie = (id) => {
     return{
@@ -15,4 +15,18 @@ export const deleteMovie = (id) => {
         payload: id
     };
 
-}
+};
+
+export const addMovie = (item) => {
+    return{
+        type: ADD_MOVIE,
+        payload: item
+    };
+
+};
+
+export const setItemsLoading = () => {
+    return {
+      type: MOVIE_LOADING
+    };
+  };

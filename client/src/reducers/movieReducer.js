@@ -23,6 +23,11 @@ export default function(state = initialState, action) {
             ...state,
             movies: state.movies.filter(movie => movie.id !== action.payload)
         };
+        case ADD_MOVIE:
+        return {
+            ...state,
+            items: [action.payload, ...state.movies]
+        }
         default:
             return state;
     }
