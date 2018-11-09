@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-const items = require('./routes/api/items');
+const movies = require('./routes/api/movies');
 
 const app = express();
 
@@ -19,7 +19,7 @@ mongoose
 
 
 // Use Routes
-app.use('/api/items', items);
+app.use('/api/movies', movies);
 
     const port = process.env.PORT || 5000;
 
