@@ -1,6 +1,6 @@
 # movies-database
 
-Client side code for the same is kept in client folder in the code base
+Client side code is in the folder named 'client' in the code base
 
 For running the code in local we have to setup local mongodb database in http://localhost:27017/
 1. Open your terminal
