@@ -7,9 +7,8 @@ For running the code in local we have to setup local mongodb database in http://
 2. run 'brew update'
 3. run 'brew install mongodb'
 4. run 'mkdir -p /data/db'
-5. run 'mongod
-Verify that MongoDB has started successfully by checking the process output for the following line: 
-'[initandlisten] waiting for connections on port 27017'
+5. run 'mongod'
+6. Verify that MongoDB has started successfully by checking the process output for the following line: '[initandlisten] waiting for connections on port 27017'
 
 Pull the code from git repository to a project folder
 1. run 'npm install' to install server side dependecies
