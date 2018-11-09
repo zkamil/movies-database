@@ -15,4 +15,4 @@ Pull the code from git repository to a project folder
 2. run 'npm run client-install' to install client side dependencies
 3. run 'npm run dev'
 Browser will open with http://localhost:3000/. 
-We can with the Movie Database MVP
+We can now use the Movie Database MVP
